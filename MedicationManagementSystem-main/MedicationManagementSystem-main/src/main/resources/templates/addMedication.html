@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Medication</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Add Medication</h1>
+    <form th:action="@{/medications}" th:object="${medication}" method="post">
+
+        <!--Name field-->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" required>
+        </div>
+
+        <!--Dosage with unit field-->
+        <div class="form-group">
+            <label for="dosage">Dosage</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="dosage" th:field="*{dosage}" required>
+                <select class="form-select" th:field="*{unit}">
+                    <option value="mg">mg</option>
+                    <option value="mL">mL</option>
+                    <option value="mcg">mcg</option>
+                    <option value="g">g</option>
+                </select>
+            </div>
+        </div>
+
+        <!--Frequency field-->
+        <div class="form-group">
+            <label for="frequency">Frequency</label>
+            <select class="form-control" id="frequency" th:field="*{frequency}" required>
+                <option value="Once a day">Once a day</option>
+                <option value="Twice a day">Twice a day</option>
+                <option value="Three times a day">Three times a day</option>
+                <option value="As needed">As needed</option>
+            </select>
+        </div>
+
+        <!--Start Date field-->
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required>
+        </div>
+
+        <!--End Date field-->
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
+        </div>
+
+        <!--Save and Cancel buttons-->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/medications}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
